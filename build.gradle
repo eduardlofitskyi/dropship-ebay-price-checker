@@ -1,0 +1,21 @@
+group 'com.lofitskyi'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile group: 'org.apache.commons', name: 'commons-csv', version: '1.4'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-htmlunit-driver', version: '2.52.0'
+    compile group: 'org.apache.commons', name: 'commons-email', version: '1.4'
+
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.53.1'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
