@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 
 class EmailSenderApache implements EmailSender {
     @Override
-    void sendReport(String path, def errors, def price, def availability) {
+    void sendReport(String path, def errors, def price, def availability, def lowPrice) {
 
         String dateTime = LocalDateTime.now().toString()
 
@@ -27,7 +27,7 @@ class EmailSenderApache implements EmailSender {
         email.addTo("eduard.sell9@gmail.com", "Eduard Sell")
         email.setFrom("eduard.sell9@gmail.com", "Me")
         email.setSubject("Amz Report: ${dateTime}")
-        email.setMsg("Here is the attachment with report\n[ERRORS]: ${errors.size()}\n[PRICE]: ${price.size()}\n[AVAILIBILITY]: ${availability.size()}")
+        email.setMsg("Here is the attachment with report\n[ERRORS]: ${errors.size()}\n[PRICE RISE]: ${price.size()}\n[PRICE LOW]: ${lowPrice.size()}\n[AVAILIBILITY]: ${availability.size()}")
 
         // add the attachment
         email.attach(attachment)

@@ -11,6 +11,7 @@ class EbayPriceChecker {
 
         def error = []
         def wrongPrice = []
+        def goodPrice = []
         def fewAvailable = []
 
         for (ItemLocal it: items){
@@ -39,6 +40,11 @@ class EbayPriceChecker {
 //                println("[WARNING-PRICE]\t${it.name}: \$${it.ebayPrice.toString()}>>${price} ")
             }
 
+            if (priceBD.compareTo(it.ebayPrice) < 0) {
+                goodPrice.add(new ItemEbay(it, amount, price))
+//                println("[WARNING-PRICE]\t${it.name}: \$${it.ebayPrice.toString()}>>${price} ")
+            }
+
             if (amount != 'More than 10 available' && amount != 'Limited quantity available' && (!StringUtils.isNumeric(amount.charAt(1).toString()) && !amount.contains(','))) {
                 fewAvailable.add(new ItemEbay(it, amount, price))
 //                println("[WARNING-AVALIABLE]\t${it.name}: [${amount}]")
@@ -46,6 +52,6 @@ class EbayPriceChecker {
         }
 
         driver.close()
-        return [error, wrongPrice, fewAvailable]
+        return [error, wrongPrice, fewAvailable, goodPrice]
     }
 }
